@@ -32,13 +32,13 @@ const parseUrl = (urlString) => {
 app.post("/api/shorturl", function (req, res) {
   const urlString = req.body["url"];
   if (parseUrl(urlString) === false) {
-    return res.json({ error: "Invalid URL" });
+    return res.json({ error: "invalid url" });
   }
 
   const url = new URL(urlString);
-  dns.lookup(url.body, (err, address, _) => {
+  dns.lookup(url.hostname, (err, address, _) => {
     if (err) {
-      return res.json({ error: "Invalid URL" });
+      return res.json({ error: "invalid url" });
     }
     data[currId] = url;
     return res.json({ original_url: url, short_url: currId++ });
