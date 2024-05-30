@@ -89,7 +89,7 @@ app.post("/api/users/:_id/exercises", (req, res) => {
         if (req.body["date"]) {
           const temp = req.body["date"].split("-");
           date = new Date(temp);
-        } else date = new Date().now();
+        } else date = new Date();
       } catch (err) {
         throw err;
       }
